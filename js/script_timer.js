@@ -67,7 +67,7 @@ function setColck(selector, endtime) {
 // Start our timer
 setColck('.timer', deadline);
 
-console.log('It is my test');
+
 
 
 
