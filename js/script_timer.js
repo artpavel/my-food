@@ -1,5 +1,5 @@
 // Timer, when date will be finish
-const deadline = '2022-03-31';
+const deadline = '2022-05-31';
 
 // This function start timer
 const getTimeRemaining = endtime => {

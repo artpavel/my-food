@@ -42,7 +42,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // call modal through time
-const modalTimerId = setTimeout(openModal, modalGetInterval);
+// const modalTimerId = setTimeout(openModal, modalGetInterval);
 
 // open modal, when scroll to end of page. It will be onle once
 const showModalByScroll = () => {
