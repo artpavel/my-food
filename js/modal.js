@@ -17,6 +17,8 @@ const openModal = () => {
   // not scroll
   document.body.style.overflow = 'hidden';
   clearInterval(modalTimerId);
+
+
 };
 
 modalTrigger.forEach(item => {
