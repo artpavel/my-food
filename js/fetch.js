@@ -19,43 +19,34 @@ const postData = form => {
     statusMessage.textContent = message.loading;
     form.append(statusMessage);
 
-    // create request
-    const req = new XMLHttpRequest();
-    // for form
     const formDate = new FormData(form);
-
-    req.open('POST', url);
-
-    req.setRequestHeader('Content-type', 'application/json');
 
     // create format json
     const obj = {};
     formDate.forEach((value, key) => {
       obj[key] = value;
     });
+
     const json = JSON.stringify(obj);
-    req.send(json);
 
-    //req.send(formDate);
-    // it not need for formDate
-    //req.setRequestHeader('Content-type', 'multipart/form-data');
-
-
-    req.addEventListener('load', () => {
-      if (req.status === 200) {
-        console.log(req.response);
+    fetch('server.php', {
+      method: "POST",
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: json
+    }).then(data => data.text())
+      .then(data => {
+        console.log(data);
         statusMessage.textContent = message.success;
-        // clear form
-        form.reset();
-        // message disappear in 2 sec
         setTimeout(() => {
           statusMessage.remove();
         }, 2000);
-      } else {
-        console.log('ERROR!!!');
+      }).catch(() => {
         statusMessage.textContent = message.failure;
-      }
-    });
+      }).finally(() => {
+        form.reset();
+      });
   });
 };
 
@@ -63,3 +54,4 @@ const postData = form => {
 forms.forEach(item => {
   postData(item);
 });
+
