@@ -2,14 +2,14 @@
 const forms = document.querySelectorAll('form');
 
 const message = {
-  loading: "Load...",
-  success: "Thanks! We call you soon!",
-  failure: "Somethig went worng..."
+  loading: 'Load...',
+  success: 'Thanks! We call you soon!',
+  failure: 'Somethig went worng...',
 };
 const url = 'server.php';
 
 // for event on the some forms
-const postData = form => {
+const postData = (form) => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -30,28 +30,34 @@ const postData = form => {
     const json = JSON.stringify(obj);
 
     fetch('server.php', {
-      method: "POST",
+      method: 'POST',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
-      body: json
-    }).then(data => data.text())
-      .then(data => {
+      body: json,
+    })
+      .then((data) => data.text())
+      .then((data) => {
         console.log(data);
         statusMessage.textContent = message.success;
         setTimeout(() => {
           statusMessage.remove();
         }, 2000);
-      }).catch(() => {
+      })
+      .catch(() => {
         statusMessage.textContent = message.failure;
-      }).finally(() => {
+      })
+      .finally(() => {
         form.reset();
       });
   });
 };
 
 // start all the forms on our page
-forms.forEach(item => {
+forms.forEach((item) => {
   postData(item);
 });
 
+fetch('http://localhost:3000/menu')
+  .then((data) => data.json())
+  .then((res) => console.log(res));
