@@ -23,7 +23,7 @@ class MenuCard {
       this.element = 'menu__item';
       element.classList.add(this.element);
     } else {
-      this.classes.forEach(className => element.classList.add(className));
+      this.classes.forEach((className) => element.classList.add(className));
     }
 
     element.innerHTML = `
@@ -41,8 +41,8 @@ class MenuCard {
 }
 //1
 new MenuCard(
-  "img/tabs/vegy.jpg",
-  "vegy",
+  'img/tabs/vegy.jpg',
+  'vegy',
   'Меню "Фитнес"',
   'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежых овощей и фруктов. Продукт активных и здоровых',
   9,
@@ -51,8 +51,8 @@ new MenuCard(
 ).render();
 //2
 new MenuCard(
-  "img/tabs/elite.jpg",
-  "elite",
+  'img/tabs/elite.jpg',
+  'elite',
   'Меню “Премиум”',
   'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба',
   14,
@@ -61,8 +61,8 @@ new MenuCard(
 ).render();
 //3
 new MenuCard(
-  "img/tabs/post.jpg",
-  "post",
+  'img/tabs/post.jpg',
+  'post',
   'Меню "Постное"',
   'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения',
   21,

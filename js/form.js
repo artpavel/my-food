@@ -2,14 +2,14 @@
 const forms = document.querySelectorAll('form');
 
 const message = {
-  loading: "Load...",
-  success: "Thanks! We call you soon!",
-  failure: "Somethig went worng..."
+  loading: 'Load...',
+  success: 'Thanks! We call you soon!',
+  failure: 'Somethig went worng...',
 };
 const url = 'server.php';
 
 // for event on the some forms
-const postData = form => {
+const bindPostData = (form) => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -40,7 +40,6 @@ const postData = form => {
     // it not need for formDate
     //req.setRequestHeader('Content-type', 'multipart/form-data');
 
-
     req.addEventListener('load', () => {
       if (req.status === 200) {
         console.log(req.response);
@@ -60,6 +59,6 @@ const postData = form => {
 };
 
 // start all the forms on our page
-forms.forEach(item => {
-  postData(item);
+forms.forEach((item) => {
+  bindPostData(item);
 });

@@ -6,10 +6,23 @@ const message = {
   success: 'Thanks! We call you soon!',
   failure: 'Somethig went worng...',
 };
-const url = 'server.php';
+// const url = 'server.php';
+
+// create function for communication with server
+const postData = async (url, data) => {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: data,
+  });
+
+  return await res.json();
+};
 
 // for event on the some forms
-const postData = (form) => {
+const bindPostData = (form) => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -22,21 +35,12 @@ const postData = (form) => {
     const formDate = new FormData(form);
 
     // create format json
-    const obj = {};
-    formDate.forEach((value, key) => {
-      obj[key] = value;
-    });
+    const obj = { ...formDate };
+    // formDate.forEach((value, key) => {
+    //   obj[key] = value;
+    // });
 
-    const json = JSON.stringify(obj);
-
-    fetch('server.php', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: json,
-    })
-      .then((data) => data.text())
+    postData('http://localhost:3000/requests', JSON.stringify(obj))
       .then((data) => {
         console.log(data);
         statusMessage.textContent = message.success;
@@ -55,9 +59,11 @@ const postData = (form) => {
 
 // start all the forms on our page
 forms.forEach((item) => {
-  postData(item);
+  bindPostData(item);
 });
 
-fetch('http://localhost:3000/menu')
+const myUrl = 'http://localhost:3000/menu';
+
+fetch(myUrl)
   .then((data) => data.json())
   .then((res) => console.log(res));
